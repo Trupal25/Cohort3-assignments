@@ -16,6 +16,82 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
 
+  constructor(){
+  this.result = 0
+  }
+  getResult(){
+    return this.result;
+  }
+  add(number){
+    this.result += number
+  }
+  subtract(number){
+    this.result -=number
+  }
+  multiply(number){
+    this.result *=number
+  }
+  divide(number){
+    try {
+      if(number === 0){
+        throw new Error("this is an error thrown by divide function")
+      }else{
+      this.result /= number
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  clear(){
+    this.result =0;
+  }
+  calculate(expression){
+    try {
+      expression = expression.replace(/\s+/g,'')
+      if(/[^0-9+\-*/().]/.test(expression)){
+        throw new Error("invalid Chars in expression occured in calculate");
+      }
+      this.checkparantheseis(expression);
+      this.result += eval(`${expression}`)
+      
+      if(isNaN(this.result) || this.result === undefined){
+        throw new Error("Error occured in calculate try block")
+      }
+      }catch (Err) {
+      console.log(Err.message);
+    }
+  }
+
+  checkparantheseis(expression){
+    let balance = 0;
+    for(let i =0; i <expression.length;i++){
+      if(expression[i] === '('){
+        balance++;
+      }
+      if(expression[i] === ')'){
+        balance--;
+      }
+      if(balance != 0){
+        throw new Error("There is an invalid number of paranthesis");
+      }
+    }
+    
+    if(balance <0){
+      throw new Error("Unbalanced paranthesis");
+      
+    }
+  }
+
+}
+
+
+// const calc = new Calculator();
+// calc.add(213)
+// // // calc.divide(100)
+// calc.calculate("10+31-20-200")
+
+// // calc.divide(0)
+// console.log(calc.getResult())
 module.exports = Calculator;

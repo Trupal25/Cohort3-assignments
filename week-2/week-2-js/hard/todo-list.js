@@ -11,7 +11,38 @@
 */
 
 class Todo {
+  constructor(){
+    this.todolist = []
+  }
+  add(todo){
+    this.todolist.push(todo)
+  }
+  remove(index){
+    if(index > this.todolist.length){
 
+    }else{
+    this.todolist.splice(index,1)
+  }}
+  update(index,updatedTodo){
+    this.todolist[index] = updatedTodo
+  }
+  get(indexOfTodo){
+    return this.todolist[indexOfTodo]
+  }
+  getAll(){
+    return this.todolist
+  }
+  clear(){
+    this.todolist = []
+  }
 }
 
+
+const todolist = new Todo();
+todolist.add("nifjs")
+todolist.add("faisfoif oidjfo;jfd")
+todolist.add("hdfja;f;lakdjf")
+
+todolist.remove(1)
+todolist.getAll()  
 module.exports = Todo;

@@ -4,7 +4,14 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  const input = str.replace(/[\s,!.?]/g,'').toLowerCase();
+  const reversedInput = input.split('').reverse().join('')
+  return input === reversedInput
 }
 
+// const result = isPalindrome("Able, was I ere I saw Elba!");
+// console.log(result);
+
+
+//  or use .reverse() to reverse the array -> join   and then check for Equality
 module.exports = isPalindrome;
