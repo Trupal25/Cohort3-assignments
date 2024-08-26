@@ -18,16 +18,18 @@ class Todo {
     this.todolist.push(todo)
   }
   remove(index){
-    if(index > this.todolist.length){
-
-    }else{
-    this.todolist.splice(index,1)
-  }}
+    if(index < this.todolist.length){
+      this.todolist.splice(index,1)
+    }
+  }
   update(index,updatedTodo){
-    this.todolist[index] = updatedTodo
+    if(index < this.todolist.length){
+    this.todolist[index] = updatedTodo}
   }
   get(indexOfTodo){
+    if(indexOfTodo < this.todolist.length)
     return this.todolist[indexOfTodo]
+  else return null
   }
   getAll(){
     return this.todolist
@@ -38,11 +40,11 @@ class Todo {
 }
 
 
-const todolist = new Todo();
-todolist.add("nifjs")
-todolist.add("faisfoif oidjfo;jfd")
-todolist.add("hdfja;f;lakdjf")
+// const todolist = new Todo();
+// todolist.add("nifjs")
+// todolist.add("faisfoif oidjfo;jfd")
+// todolist.add("hdfja;f;lakdjf")
 
-todolist.remove(1)
-todolist.getAll()  
+// todolist.remove(1)
+// todolist.getAll()  
 module.exports = Todo;
