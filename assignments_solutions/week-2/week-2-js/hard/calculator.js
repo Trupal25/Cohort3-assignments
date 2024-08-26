@@ -34,35 +34,34 @@ class Calculator {
     this.result *=number
   }
   divide(number){
-    try {
       if(number === 0){
         throw new Error("this is an error thrown by divide function")
       }else{
       this.result /= number
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+    } 
+  
   clear(){
     this.result =0;
   }
   calculate(expression){
-    try {
+   
       expression = expression.replace(/\s+/g,'')
       if(/[^0-9+\-*/().]/.test(expression)){
         throw new Error("invalid Chars in expression occured in calculate");
       }
-      this.checkparantheseis(expression);
-      this.result += eval(`${expression}`)
+      this.checkparantheseis(`${expression}`);
       
+      expression.replace(/\s+/g,"")
+      if(expression.includes("/0")){
+        throw new Error("invalid expression")
+      }
+      this.result += eval(expression)
       if(isNaN(this.result) || this.result === undefined){
         throw new Error("Error occured in calculate try block")
       }
-      }catch (Err) {
-      console.log(Err.message);
     }
-  }
+    
 
   checkparantheseis(expression){
     let balance = 0;
@@ -73,14 +72,9 @@ class Calculator {
       if(expression[i] === ')'){
         balance--;
       }
-      if(balance != 0){
-        throw new Error("There is an invalid number of paranthesis");
-      }
     }
-    
-    if(balance <0){
-      throw new Error("Unbalanced paranthesis");
-      
+    if(balance != 0){
+      throw new Error("There is an invalid number of paranthesis");
     }
   }
 
